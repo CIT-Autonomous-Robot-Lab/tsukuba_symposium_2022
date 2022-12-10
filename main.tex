@@ -61,7 +61,7 @@
 
 \begin{figure}[h]
  	\begin{center}
- 		\includegraphics[width=1.0\linewidth]{figs/raspicat.png}
+ 		\includegraphics[width=1.0\linewidth]{figs/raspicat.pdf}
  		\caption{Raspberry Pi Cat（つくばチャレンジ2022）}
  		\label{fig:raspicat}
  	\end{center}
@@ -141,10 +141,10 @@ Cat Bチームの本走行結果は369mである.
 自己位置推定に使用した外界センサは, 2D LiDARのみであり,
 この2D LiDARを去年\cite{去年のつくばチャレンジシンポジウム}
 と同様に同じ位置に取り付けた.
-IMUなどの慣性計測装置は, 去年で使用せずに550m自律走行することができたことから, 
-つくばチャレンジ2022で使用しなかった. 
+IMUなどの慣性計測装置は, 去年は使用せずに550m自律走行することができたことから, 
+今年は使用しなかった. 
 
-ロボットの制御システムとしてROSを使用している. 
+ロボットの制御システムは, ROSを使用している. 
 経路計画, 経路追従, 障害物回避は, ROSがOSSとして公開している
 NavigationStackを使用した. 
 自己位置推定は, 去年amclを使用していたが, 
@@ -153,23 +153,62 @@ NavigationStackを使用した.
 \subsection{見つかった問題}
 
 今回実験走行/本走行で自己位置推定を行うことが難しい環境に遭遇した. 
-難しかった環境は, 図\ref{fig:自己位置推定難しかったマップ}で示された
+難しかった環境は, 以下
 \begin{itemize}
-  \item 信号あり横断歩道の停止線前の20m
-  \item 信号あり横断歩道行き(2回目の停止線での停止)
-  \item 信号あり横断歩道行き(横断歩道の横断)
+  \item 信号あり横断歩道往路の停止線前の20m
+  \item 信号あり横断歩道往路(2回目の停止位置での停止)
+  \item 信号あり横断歩道往路(横断歩道の横断)
   \item 市役所側の線路隣の路地
   \item 公園側の線路隣の路地
 \end{itemize}
 である. 
 
-信号あり横断歩道の停止線前の20m, 市役所側の線路隣の路地, 公園側の線路隣の路地は, 
-ロボットが移動しているが自己位置推定側のパーティクルが移動しない問題があった. 
-信号あり横断歩道行き全般（2回目の停止線での停止）は, 停止エリアに点字ブロックが存在し、
-また2D LiDAR前方のほとんどのセンサ情報が地面になってしまうほどの勾配になっており, 自己位置推定が不確かであった.
-信号あり横断歩道行き(横断歩道の横断)は, 点字ブロックに足を大きく持っていかれ回転方向に大きく自己位置推定が
-ずれたり, ランドーマークを観測できてない状況での膨張リセットが働いたため自己位置推定の破綻を起こすことがあった. 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/city_hall_side_alley.pdf}
+    \caption{市役所側の線路隣の路地}
+    \label{fig:city_hall_side_alley}
+  \end{center}
+\end{figure}
 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/park_side_alley.pdf}
+    \caption{公園側の線路隣の路地}
+    \label{fig:park_side_alley}
+  \end{center}
+\end{figure}
+
+% \begin{figure}[h]
+%   \begin{center}
+%     \includegraphics[width=1.0\linewidth]{figs/park_side_alley.pdf}
+%     \caption{公園側の線路隣の路地}
+%     \label{fig:park_side_alley}
+%   \end{center}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \begin{center}
+%     \includegraphics[width=1.0\linewidth]{figs/city_hall_side_alley.pdf}
+%     \caption{市役所側の線路隣の路地}
+%     \label{fig:city_hall_side_alley}
+%   \end{center}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \begin{center}
+%     \includegraphics[width=1.0\linewidth]{figs/park_side_alley.pdf}
+%     \caption{公園側の線路隣の路地}
+%     \label{fig:park_side_alley}
+%   \end{center}
+% \end{figure}
+
+信号あり横断歩道の停止線前の20m, 市役所側の線路隣の路地, 公園側の線路隣の路地は, 
+ロボットは動していたが, 自己位置推定のパーティクルが移動しない問題があった. 
+信号あり横断歩道往路（2回目の停止線での停止）は, 停止エリアに点字ブロックが存在し、
+また2D LiDAR前方のほとんどのセンサ情報が地面になってしまうほどの勾配になっており, 自己位置推定が不確かであった.
+信号あり横断歩道往路(横断歩道の横断)は, 点字ブロックに足を大きく持っていかれ回転方向に大きく自己位置推定が
+ずれたり, ランドーマークを観測できてない状況での膨張リセットが働いたため自己位置推定の破綻を起こすことがあった. 
 
 %\section{実験走行、本走行の結果}←ここにもってくる
 
