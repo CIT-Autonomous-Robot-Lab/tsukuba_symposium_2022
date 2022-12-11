@@ -191,6 +191,7 @@ NavigationStackを使用した.
 今回実験走行/本走行で自己位置推定を行うことが難しい環境に遭遇した. 
 難しかった環境は, 以下の
 \begin{itemize}
+  \item 市役所前の横断歩道（横断直前）
   \item 信号あり横断歩道往路の停止線前の20m
   \item 信号あり横断歩道往路(1回目の停止位置での停止)
   \item 信号あり横断歩道往路(2回目の停止位置での停止)
@@ -199,6 +200,14 @@ NavigationStackを使用した.
   \item 公園側の線路隣の路地
 \end{itemize}
 である. 
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/crosswalk_city_hall.pdf}
+    \caption{市役所前の横断歩道（点字ブロックによって, 回転方向に大きくずれた時）}
+    \label{fig:crosswalk_city_hall}
+  \end{center}
+\end{figure}
 
 \begin{figure}[h]
   \begin{center}
@@ -216,13 +225,13 @@ NavigationStackを使用した.
   \end{center}
 \end{figure}
 
-% \begin{figure}[h]
-%   \begin{center}
-%     \includegraphics[width=1.0\linewidth]{figs/20m_before_stop_line.pdf}
-%     \caption{信号あり横断歩道往路の停止線前の20m}
-%     \label{fig:20m_before_stop_line}
-%   \end{center}
-% \end{figure}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/20m_before_stop_line.pdf}
+    \caption{信号あり横断歩道往路の停止線前の20m}
+    \label{fig:20m_before_stop_line}
+  \end{center}
+\end{figure}
 
 \begin{figure}[h]
   \begin{center}
@@ -240,12 +249,15 @@ NavigationStackを使用した.
   \end{center}
 \end{figure}
 
-信号あり横断歩道の停止線前の20m, 市役所側の線路隣の路地, 公園側の線路隣の路地は, 
+図\ref{fig:crosswalk_city_hall}の信号あり横断歩道の停止線前の20m, 
+図\ref{fig:city_hall_side_alley}の市役所側の線路隣の路地, 図\ref{fig:park_side_alley}の公園側の線路隣の路地は, 
 ロボットは移動していたが, 自己位置推定のパーティクルが移動しない問題があった. 
-信号あり横断歩道往路（2回目の停止位置での停止）は, 停止エリアに点字ブロックが存在し、
+図\ref{fig:stop_first_stop_position}の信号あり横断歩道往路（1回目の停止位置での停止）は, 人混みやロボットの待機列に遭遇した
+場合, 2D LiDARから得られる情報のほとんどに未知障害物が含まれ, 自己位置推定が機能しなかった. 
+図\ref{fig:stop_second_stop_position}の信号あり横断歩道往路（2回目の停止位置での停止）は, 停止エリアに点字ブロックが存在し、
 さらに2D LiDAR前方のほとんどのセンサ情報が地面になってしまうほどの勾配になっており, 
 その影響で自己位置推定が不確かであった.
-信号あり横断歩道往路(横断歩道の横断)は, 点字ブロックに足を大きく持っていかれ, 回転方向に大きく自己位置推定が
+図\ref{fig:stop_second_stop_position}の信号あり横断歩道往路(横断歩道の横断)は, 点字ブロックに足を大きく持っていかれ, 回転方向に大きく自己位置推定が
 ずれることがあった. 
 また, 横断中, ランドーマークを観測できない状況での膨張リセットが働いたため, 自己位置推定の破綻を起こすことがあった. 
 
