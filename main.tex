@@ -189,9 +189,10 @@ NavigationStackを使用した.
 \subsubsection{実験走行、本走行で見つかった課題}
 
 今回実験走行/本走行で自己位置推定を行うことが難しい環境に遭遇した. 
-難しかった環境は, 以下
+難しかった環境は, 以下の
 \begin{itemize}
   \item 信号あり横断歩道往路の停止線前の20m
+  \item 信号あり横断歩道往路(1回目の停止位置での停止)
   \item 信号あり横断歩道往路(2回目の停止位置での停止)
   \item 信号あり横断歩道往路(横断歩道の横断)
   \item 市役所側の線路隣の路地
@@ -217,27 +218,35 @@ NavigationStackを使用した.
 
 % \begin{figure}[h]
 %   \begin{center}
-%     \includegraphics[width=1.0\linewidth]{figs/park_side_alley.pdf}
-%     \caption{公園側の線路隣の路地}
-%     \label{fig:park_side_alley}
+%     \includegraphics[width=1.0\linewidth]{figs/20m_before_stop_line.pdf}
+%     \caption{信号あり横断歩道往路の停止線前の20m}
+%     \label{fig:20m_before_stop_line}
 %   \end{center}
 % \end{figure}
 
 % \begin{figure}[h]
 %   \begin{center}
-%     \includegraphics[width=1.0\linewidth]{figs/city_hall_side_alley.pdf}
-%     \caption{市役所側の線路隣の路地}
-%     \label{fig:city_hall_side_alley}
+%     \includegraphics[width=1.0\linewidth]{figs/stop_first_stop_position.pdf}
+%     \caption{信号あり横断歩道往路(2回目の停止位置での停止)}
+%     \label{fig:stop_first_stop_position}
 %   \end{center}
 % \end{figure}
 
-% \begin{figure}[h]
-%   \begin{center}
-%     \includegraphics[width=1.0\linewidth]{figs/park_side_alley.pdf}
-%     \caption{公園側の線路隣の路地}
-%     \label{fig:park_side_alley}
-%   \end{center}
-% \end{figure}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/stop_second_stop_position.pdf}
+    \caption{信号あり横断歩道往路(2回目の停止位置での停止)}
+    \label{fig:stop_second_stop_position}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/crossing_pedestrian_crossing.pdf}
+    \caption{信号あり横断歩道往路(横断歩道の横断)}
+    \label{fig:crossing_pedestrian_crossing}
+  \end{center}
+\end{figure}
 
 信号あり横断歩道の停止線前の20m, 市役所側の線路隣の路地, 公園側の線路隣の路地は, 
 ロボットは移動していたが, 自己位置推定のパーティクルが移動しない問題があった. 
