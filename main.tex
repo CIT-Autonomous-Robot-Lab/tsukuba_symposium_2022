@@ -172,13 +172,34 @@ Raspberry Piによる計算の遅れが
 
 \subsubsection{使用したハードウェアとソフトウェア}
 
+% @@@これはたぶん3.1に吸収合併@@@
+つくばチャレンジ2021では、2D LiDARのみによる自己位置推定を行った。
+去年\cite{RTshop}では, 順調に信号あり横断歩道まで走行ができたため、
+今年は同じセンサ構成で挑んだ。
+
 自己位置推定に関連するシステムを
-図\ref{fig:ハードウェア}, 図\ref{fig:ソフトウェア}に示す. 
+図\ref{fig:hardware}, 図\ref{fig:software}に示す. 
 自己位置推定に使用した外界センサは, 2D LiDARのみであり,
 この2D LiDARを去年\cite{去年のつくばチャレンジシンポジウム}
 と同様に同じ位置に取り付けた.
 IMUなどの慣性計測装置は, 去年は使用せずに550m自律走行（公式記録ではない）することができたことから, 
 今年は使用しなかった. 
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/hardware.pdf}
+    \caption{ハードウェア構成}
+    \label{fig:hardware}
+  \end{center}
+\end{figure}
+
+% \begin{figure}[h]
+%   \begin{center}
+%     \includegraphics[width=1.0\linewidth]{figs/software.pdf}
+%     \caption{ソフトウェア構成}
+%     \label{fig:software}
+%   \end{center}
+% \end{figure}
 
 ロボットの制御システムは, ROSを使用している. 
 経路計画, 経路追従, 障害物回避は, ROSがOSSとして公開している
@@ -294,11 +315,6 @@ NavigationStackを使用した.
 これは、小型ロボットゆえでもあり、当チームの自己位置推定が期待通りに機能できてないといえる。
 
 \subsection{2DLiDARのみでの自己位置推定}
-
-@@@これはたぶん3.1に吸収合併@@@
-
-つくばチャレンジ2021では、当チームは2DLiDARのみによる自己位置推定を行った\cite{RTshop}。
-順調に信号あり横断歩道まで走行ができたため、つくばチャレンジ2022では同じセンサ構成で挑んだ。
 
 つくばチャレンジ2022では、つくばチャレンジ2021で走行できなかった
 信号あり横断歩道から→研究学園駅→公園→ゴールまでの箇所のナビゲーションを行った。
