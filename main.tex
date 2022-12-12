@@ -252,28 +252,92 @@ Aチームが自己位置推定に使用したマップを図\ref{fig:map_tsukub
   \end{center}
 \end{figure}
 
-\subsubsection{実験走行、本走行で見つかった課題（自己位置推定）}
+\subsubsection{実験走行、本走行で見つかった課題}
 
-今回実験走行/本走行で自己位置推定を行うことが難しい環境に遭遇した. 
-難しかった環境は, 以下の
-\begin{itemize}
-  \item 市役所前の横断歩道（横断直前）
-  \item 信号あり横断歩道往路の停止線前の20m
-  \item 信号あり横断歩道往路(1回目の停止位置での停止)
-  \item 信号あり横断歩道往路(2回目の停止位置での停止)
-  \item 信号あり横断歩道往路(横断歩道の横断)
-  \item 市役所側の線路隣の路地
-  \item 公園側の線路隣の路地
-\end{itemize}
-である. 
+今年度のハードウェア、ソフトウェア構成で問題となった
+点について述べる。先述のように、本チームでは昨年度から
+IMUを使用していなかったが、本年度はより
+広範囲でロボットを走行させたため、
+IMUを使用しない場合の屋外での自己位置推定の難しさが、
+より浮き彫りとなった。
+なお、「簡素な構成」という点で、IMUの使用は
+ロボットの部品数を増やすことになるが、
+一方で自己位置推定の際の計算負荷を下げる効果があるため、
+来年度以降は「IMU不使用」にこだわらず、使用を検討している。
+
+
+\paragraph{横断歩道手前の点字ブロックでの向きの急変}
+
+
+Aチームの本走行は、表\ref{MainRun}のとおり、
+点字ブロックと車輪が干渉し、ロボットが急に向きを変えて
+自己位置推定が破綻するという理由でリタイアとなった。
+図\ref{fig:crosswalk_city_hall}に、このときの状況を示す。
+この写真の直前、ロボットは横断歩道の方向を向いて停止していたが、
+横断歩道を渡ろうとしたときに少し向きが変わって
+自己位置の推定値とずれた。
+このずれをセンサ情報で補正することができず、
+ロボットはずれたままの推定値に基づいて移動を試みて、
+結果として横断歩道と反対の向きになった。
 
 \begin{figure}[h]
   \begin{center}
     \includegraphics[width=1.0\linewidth]{figs/crosswalk_city_hall.pdf}
-    \caption{市役所前の横断歩道（点字ブロックによって, 回転方向に大きくずれた時）}
+	  \caption{Aチームのリタイア時の状況}
     \label{fig:crosswalk_city_hall}
   \end{center}
 \end{figure}
+
+同様の問題は、Aチームのロボットが信号あり横断歩道を渡る際にも見られた。
+横断歩道手前には、図\ref{fig:stop_second_stop_position}
+のように点字ブロックがあり、デッドレコニングの誤差の原因となる。
+また、横断歩道に向かって下り坂になっているため、
+2次元LiDARのレーザーが路面に当たって誤差の補正ができない。
+さらには、横断歩道手前の信号待ちの停止線付近
+（図\ref{fig:stop_first_stop_position}）は、
+2次元LiDARで捉えることのできる情報が乏しく、
+人が多くて雑音も多く、当チームのハードウェア構成では、
+自己位置推定が非常に困難な状況となった。
+Aチームは、この横断歩道でのロボットの走行を繰り返したが、
+結局、たまたまデッドレコニングの誤差が小さく収まったときのみ、
+横断歩道を渡ることができた。
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/stop_second_stop_position.pdf}
+	  \caption{信号あり横断歩道にある点字ブロック（往路）}
+    \label{fig:stop_second_stop_position}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/stop_first_stop_position.pdf}
+	  \caption{信号あり横断歩道前の停止線（往路）}
+    \label{fig:stop_first_stop_position}
+  \end{center}
+\end{figure}
+
+この問題は、昨年度は顕在化しなかったが、
+本年度のAチームは、昨年度よりも長時間、
+ロボットで実験走行できており、これが
+顕在化の理由のひとつとして考えられる。
+ただし、本年度はノート型PCをロボットに搭載せず、
+ロボットが軽くなり、点字ブロックではねやすくなったことも、
+もうひとつの理由として考えられる。
+
+この問題への対策は、まずはIMUの使用であると考えている。
+また、Bチームについては、機体を安定させるためにバラストを使用しており、
+このような問題は顕在化しなかった。ただし、
+走行時間がAチームと比較して少なかったので、
+バラストが有効であるかどうかは検証の必要がある。
+
+ソフトウェアでの改善も研究としては興味深い話題である。
+点字ブロックでの移動誤差や、坂道でのセンサ情報の誤差を
+パーティクルの操作に反映することや、
+ロボットが誤差の生じにくい移動経路を選ぶことが考えられる。
+
+\paragraph{長い直線での知覚的見せかけ}
 
 \begin{figure}[h]
   \begin{center}
@@ -291,29 +355,8 @@ Aチームが自己位置推定に使用したマップを図\ref{fig:map_tsukub
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{figs/20m_before_stop_line.pdf}
-    \caption{信号あり横断歩道往路の停止線前の20m}
-    \label{fig:20m_before_stop_line}
-  \end{center}
-\end{figure}
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{figs/stop_first_stop_position.pdf}
-    \caption{信号あり横断歩道往路(1回目の停止位置での停止)}
-    \label{fig:stop_first_stop_position}
-  \end{center}
-\end{figure}
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{figs/stop_second_stop_position.pdf}
-    \caption{信号あり横断歩道往路(2回目の停止位置での停止)}
-    \label{fig:stop_second_stop_position}
-  \end{center}
-\end{figure}
 
 図\ref{fig:crosswalk_city_hall}の市役所前の横断歩道は, 停止後のリスタートで点字ブロックに足を持っていかれて
 回転方向に大きく自己位置推定がずれた. そのため, そのまま走行し続け, 自己位置推定が破綻してしまった. 
