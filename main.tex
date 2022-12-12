@@ -226,24 +226,12 @@ emcl2、amclのどちらがロバスト性や正確さの点で
 遜色のない安定さが確認されている。
 
 
-本チームのナビゲーションソフトウェアは図\ref{fig:software}
-のようにROS1のNavigation Stackをカスタマイズしたものである。
-図中のemcl2の箇所は、amclと切り替えが容易なので、
-実験走行中は、ふたつのパッケージを比較しながら、
-最終的にどちらかを使うかを検討した。
 
 Aチームが自己位置推定に使用したマップを図\ref{fig:map_tsukuba}に示す。
 マッピングには, gmappingを用いた. 
 マップは、昨年度のもの（信号手前までのもの）を一部流用し、
 手動で合成することで、作成する手間を省いた。
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=1.0\linewidth]{figs/software.pdf}
-    \caption{ソフトウェア構成}
-    \label{fig:software}
-  \end{center}
-\end{figure}
 
 
 \begin{figure}[h]
@@ -332,6 +320,19 @@ Aチームが自己位置推定に使用したマップを図\ref{fig:map_tsukub
 また, 横断中, ランドーマークを観測できない状況での膨張リセットが働いたため, 自己位置推定の破綻を起こすことがあった. 
 
 \subsection{経路生成、衝突回避のシステム}
+
+本チームのナビゲーションソフトウェアは図\ref{fig:software}
+のようにROS1のNavigation Stackをカスタマイズしたものである。
+図中のemcl2の箇所は、amclと切り替えが容易なので、
+実験走行中は、ふたつのパッケージを比較しながら、
+最終的にどちらかを使うかを検討した。
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{figs/software.pdf}
+    \caption{ソフトウェア構成}
+    \label{fig:software}
+  \end{center}
+\end{figure}
 
 経路生成, 障害物回避は, ROS Navigation Stackのglobal planner(ダイクストラ法), DWA plannerを使用している. 
 それぞれ, global plannerは1Hz, DWA plannerは5Hzで実行している. 
