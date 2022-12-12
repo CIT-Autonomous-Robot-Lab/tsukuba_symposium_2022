@@ -180,11 +180,21 @@ Raspberry Piによる計算の遅れが
 
 自己位置推定には、図\ref{fig:hardware}のように、
 2次元のLiDARとRaspberry Pi 4を用いた。
+つくばチャレンジにおいては、
+全区間において安定した自己位置推定を実現し、
+もはや自己位置推定を難題としないチームも存在する。
+しかし、本チームの場合、
+諸言で述べたように「簡素な構成」での安定した
+自己位置推定を実現することが課題となる。
+他のチームと比べて計算能力の低い
+Raspberry Piを使うという制限のなかで、
+ナビゲーションしながら実時間で自己位置推定を
+実行しなければならない。
+
+
 LiDARの取り付け位置は、図\ref{fig:raspicat}
 に見られるように車体前方で、
-これは昨年度\cite{去年のつくばチャレンジシンポジウム, SI2021}
-と同じである。
-
+これは昨年度\cite{池邉2021}と同じである。
 慣性計測装置（IMU）や車輪の回転角の計測も、
 昨年度と同様、使用しなかった。
 変更しなかったのは、昨年度、同様の構成で
@@ -200,8 +210,8 @@ LiDARの取り付け位置は、図\ref{fig:raspicat}
 
 自己位置推定については, 本年度の本走行では、
 本チームで開発したオリジナルの
-パッケージemcl2\cite{githubのemcl2}を利用した。
-emcl2はamcl\cite{なにか文献}と互換のパッケージで、
+パッケージemcl2\cite{emcl2}を利用した。
+emcl2はamcl\cite{amcl}と互換のパッケージで、
 amclよりもカスタマイズしやすい
 自己位置推定ソフトウェアとして開発したものである。
 Aチームではemcl2をカスタマイズし、
@@ -390,6 +400,16 @@ Aチームが自己位置推定に使用したマップを図\ref{fig:map_tsukub
 	  Morgan Quigley {\it et al.}: ``ROS: an open-source Robot Operating System,'' 
 Open-Source Software workshop of the International Conference on Robotics and Automation, 2009. 
 
+\bibitem{fox2003}
+Dieter Fox:
+``Adapting the Sample Size in Particle Filters Through KLD-Sampling,''
+International Journal of Robotics Research, Vol. 22, No. 12, pp. 985-1003, 2003. 
+
+\bibitem{gutmann2002}
+Jens-Steffen Gutmann and Dieter Fox: 
+``An Experimental Comparison of Localization Methods Continued,''
+Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS),pp. 454-459, 2002.
+  
 \bibitem{ueda2002tdp}
 	Ryuichi Ueda {\it et al.}: 
 ``Team description of Team ARAIBO,'' 
@@ -414,15 +434,14 @@ Proc. of 2002 International RoboCup Symposium, 2002.
   \bibitem{GIMP}
   GIMP.org: ``GIMP,'' \url{https://www.gimp.org/} (last visit: 2021-12-31)．
   
-  \bibitem{emcl}
-  Ryuichi Ueda: ``ryuichiueda/emcl,''\\\url{https://github.com/ryuichiueda/emcl} (last visit: 2021-12-31).
-  
+  \bibitem{emcl2}
+  Ryuichi Ueda: ``ryuichiueda/emcl,''\\\url{https://github.com/ryuichiueda/emcl2} (last visit: 2022-12-12).
+
   \bibitem{raspicat}
   Ryuichi Ueda and Daisuke Sato: ``ja/raspicat,'' \url{https://wiki.ros.org/ja/raspicat} (last visit: 2021-12-31)．
   
   \bibitem{raspicat_rosbag}
   Tatsuhiro Ikebe: ``uhobeike/raspicat\_rosbag,'' \url{https://github.com/uhobeike/raspicat_rosbag} (last visit: 2021-12-31)．
-
 
   \bibitem{池邉2021}
  池邉 龍宏，曹 越，高橋 秀太，クルス　ペレス アントニオ，林原 靖男，上田 隆一: 小型移動ロボットによるつくばチャレンジへの挑戦，第22回計測自動制御学会システムインテグレーション部門講演会，pp.3390-3393，2021.
