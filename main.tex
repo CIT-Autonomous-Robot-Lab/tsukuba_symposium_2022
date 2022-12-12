@@ -375,7 +375,7 @@ emcl2のパラメータを可変にすることで解決を図った。
 \subsection{経路生成、衝突回避のシステム}
 
 本チームのナビゲーションソフトウェアは図\ref{fig:software}
-のようにROS1のNavigation Stackをカスタマイズしたものである。
+のようにROSのNavigation Stackをカスタマイズしたものである。
 図中のemcl2の箇所は、amclと切り替えることがあり、
 実験走行期間中に、本走行でどちらかを使うかを検討した。
 
@@ -424,9 +424,19 @@ DRAM上に展開できず、DRAMが8GBのモデルのRaspberry Pi 4を用いた�
 \ref{sub:localization}節で述べたとおり、
 この構成では、ソフトウェア面において、
 自己位置推定の工夫が必要となった。
+
 来年度は、IMUをセンサに加え、
 Raspberry Piのみを計算機として用いたロボットを
 完走させることを目指す。
+また、計算量の少なさにこだわらない別の試みとして、
+パーティクルの分布から、
+不確かさを考慮して行動決定する手法を
+実装したROSパッケージを作成している\cite{pfc}。
+この手法を実用できると、
+自己位置推定の結果が不確かであれば、
+センシングできない縁石などの障害物から遠ざかって移動するなど、
+よりロボットに柔軟に行動決定させることができる。
+
 
 \section*{謝辞}
 
@@ -480,7 +490,10 @@ Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems
   % GIMP.org: ``GIMP,'' \url{https://www.gimp.org/} (last visit: 2021-12-31)．
   
 \bibitem{emcl2}
-Ryuichi Ueda: ``ryuichiueda/emcl,''\\\url{https://github.com/ryuichiueda/emcl2} (last visit: 2022-12-12).
+Ryuichi Ueda: ``ryuichiueda/emcl2,''\\\url{https://github.com/ryuichiueda/emcl2} (last visit: 2022-12-12).
+
+\bibitem{pfc}
+	Ryuichi Ueda: ``ryuichiueda/value\_iteration (amdp branch),''\\\url{https://github.com/ryuichiueda/value_iteration/tree/amdp} (last visit: 2022-12-12).
 
   \bibitem{raspicat}
   Ryuichi Ueda and Daisuke Sato: ``ja/raspicat,'' \url{https://wiki.ros.org/ja/raspicat} (last visit: 2021-12-31)．
